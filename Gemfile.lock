@@ -28,6 +28,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
+    bcrypt-ruby (3.1.2)
     better_errors (2.0.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -91,6 +92,8 @@ GEM
     multi_json (1.10.1)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
+    nyan-cat-formatter (0.10.1)
+      rspec (>= 2.99, >= 2.14.2, < 4)
     pg (0.17.1)
     polyglot (0.3.5)
     pry (0.10.1)
@@ -187,6 +190,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby
   better_errors
   binding_of_caller
   capybara
@@ -194,6 +198,7 @@ DEPENDENCIES
   guard-rspec
   jbuilder (~> 2.0)
   jquery-rails
+  nyan-cat-formatter
   pg
   pry-rails
   quiet_assets
