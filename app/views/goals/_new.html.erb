@@ -1,0 +1,15 @@
+<form action="<%= goals_url %>" method="POST">
+  <%= auth_token %>
+  <label for="goal_title">Title</label>
+  <input type="text"
+         id="goal_title"
+         name="goal[title]"
+         value="<%= goal.title %>">
+
+  <label for="goal_content">Tell us more.</label>
+  <textarea id="goal_content"
+            name="goal[content]"><%= goal.content %></textarea>
+
+  <button id="goal_submit">Submit</button>
+
+</form>

@@ -3,5 +3,7 @@ Rails.application.routes.draw do
 
   resource :session
 
+  resources :goals
+
   root to: 'users#new'
 end

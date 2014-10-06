@@ -6,18 +6,24 @@
 </head>
 <body>
 
-<%= yield %>
+  <% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+      <%= error %>
+    <% end %>
+  <% end %>
 
-<% if current_user  %>
-  Welcome to the People's Republic, <%= current_user.username %>!
-  <form action="<%= session_url %>" method="POST">
-    <input type="hidden" name="_method" value="DELETE">
+  <%= yield %>
 
-    <%= auth_token %>
+  <% if current_user  %>
+    Welcome to the People's Republic, <%= current_user.username %>!
+    <form action="<%= session_url %>" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
 
-    <button>Sign Out</button>
-  </form>
-<% end %>
+      <%= auth_token %>
+
+      <button>Sign Out</button>
+    </form>
+  <% end %>
 
 </body>
 </html>
