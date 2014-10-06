@@ -1,9 +1,11 @@
 <h1><%= @user %>'s page</h1>
+<a href="<%= user_comments_url(@user) %>">Comment on <%= @user %></a>
+
 
 <% goals_list = ( @user == current_user ? @user.goals : @user.public_goals ) %>
 
 <% goals_list.each do |goal| %>
-  <%= goal %>
+  <%= goal %>: <%= goal.content %>
 <% end %>
 
 New Goal

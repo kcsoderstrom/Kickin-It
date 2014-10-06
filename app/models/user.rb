@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   validates :username, :session_token, uniqueness: true
 
   has_many :goals
+  has_many :comments, as: :commentable
 
 
   attr_reader :password

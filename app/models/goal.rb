@@ -5,9 +5,10 @@ class Goal < ActiveRecord::Base
   validates :title, uniqueness: { scope: :user }
 
   belongs_to :user
+  has_many :comments, as: :commentable
 
   def to_s
-    "#{title}: #{content}"
+    title
   end
 
 end
