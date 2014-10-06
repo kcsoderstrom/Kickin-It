@@ -35,6 +35,10 @@ class User < ActiveRecord::Base
     self.username
   end
 
+  def public_goals
+    self.goals.where(is_private: false)
+  end
+
   private
   def ensure_session_token
     self.session_token ||= self.class.generate_session_token

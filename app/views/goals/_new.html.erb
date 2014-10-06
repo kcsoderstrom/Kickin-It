@@ -10,6 +10,13 @@
   <textarea id="goal_content"
             name="goal[content]"><%= goal.content %></textarea>
 
+  <label for="goal_private">Private</label>
+  <input type="hidden" name="goal[is_private]" value="false">
+  <input type="checkbox"
+         id="goal_private"
+         name="goal[is_private]"
+         value="true">
+
   <button id="goal_submit">Submit</button>
 
 </form>

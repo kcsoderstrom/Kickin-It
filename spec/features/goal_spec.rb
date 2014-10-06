@@ -41,7 +41,6 @@ feature "goals list on user's show page" do
         fill_in 'goal_title', with: 'Retake the mainland'
         click_on 'goal_submit'
 
-        save_and_open_page
         fill_in 'goal_title', with: 'Retake the mainland'
         click_on 'goal_submit'
 
@@ -66,16 +65,53 @@ feature "goals list on user's show page" do
 
 end
 
-# feature "logging in" do
-#
-#   it "shows username on the homepage after login"
-#
-# end
-#
-# feature "logging out" do
-#
-#   it "begins with logged out state"
-#
-#   it "doesn't show username on the homepage after logout"
-#
-# end
+feature "goal privacy" do
+
+  before(:each) do
+    visit(new_user_url)
+    fill_in 'username', with: 'Kim_Yong-bom'
+    fill_in 'password', with: 'thenorthremembers'
+    click_on 'Sign Up'
+
+    fill_in 'goal_title', with: 'Organize the workers'
+    click_on 'goal_submit'
+
+    fill_in 'goal_title', with: 'Starve the children'
+    check('goal_private')
+    click_on 'goal_submit'
+
+    click_on "Sign Out"
+
+    visit(new_user_url)
+    fill_in 'username', with: 'Pol Pot'
+    fill_in 'password', with: 'killthemall'
+    click_on 'Sign Up'
+  end
+
+  after(:each) do
+    click_on "Sign Out"
+    User.find_by_username("Kim_Yong-bom").destroy
+    User.find_by_username("Pol Pot").destroy
+  end
+
+  it "defaults to public" do
+    visit user_url(User.find_by_username("Kim_Yong-bom"))
+    expect(page).to have_content("Organize the workers")
+  end
+
+  it "disallows others from seeing private goals" do
+    visit user_url(User.find_by_username("Kim_Yong-bom"))
+    expect(page).not_to have_content("Starve the children")
+  end
+
+  it "can always be seen by author" do
+    visit user_url(User.find_by_username("Pol Pot"))
+    fill_in 'goal_title', with: 'Dig mass graves'
+    fill_in 'goal_content', with: "I just don't want to show my soft side. ='("
+    check('goal_private')
+    click_on 'goal_submit'
+
+    expect(page).to have_content("Dig mass graves")
+  end
+
+end
