@@ -6,9 +6,11 @@
   <% id_type = "goal_id" %>
 <% end %>
 
-<% @commentable.comments.each do |com| %>
-  <%= com.content %>
-<% end %>
+<ul>
+  <% @commentable.comments.each do |com| %>
+    <li><%= com.content %></li>
+  <% end %>
+</ul>
 
 <form action="<%= comments_url %>" method="POST">
   <%= auth_token %>

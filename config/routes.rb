@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:index]
   end
 
-  resource :session
+  resource :session, only: [:create, :new, :destroy]
 
   resources :goals do
     resources :comments, only: [:index]
